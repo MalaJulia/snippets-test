@@ -12,10 +12,8 @@ async function bootstrap() {
     }),
   );
   app.enableCors({
-    origin: ["http://localhost:3000", "http://localhost:3001", "https://snippets-test.vercel.app/"],
+    origin: "*",
     methods:'GET, HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: "Content-Type",
-    credential: true,
   })
   await app.listen(process.env.PORT ?? 3000);
  
