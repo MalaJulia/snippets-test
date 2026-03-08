@@ -3,7 +3,7 @@ import {
   Snippet,
   UpdateSnippet,
 } from "../interfaces/snippetInterfaces";
-import axios from "axios";
+import axios from "@/node_modules/axios/index";
 
 const BASE_URL =
   process.env.URL || "http://localhost:3000";
@@ -29,6 +29,7 @@ const buildQuery = (params: GetSnippetsParams) => {
 export const getSnippets = async (params: GetSnippetsParams = {}) => {
   const query = buildQuery(params);
   const url =`${BASE_URL}/snippet${query ? `?${query}` : ""}`
+  console.log(url, 'url');
   const res = await axios
     .get(url)
       if (!res.data) {
