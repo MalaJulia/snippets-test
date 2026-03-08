@@ -6,7 +6,7 @@ import {
 import axios from "@/node_modules/axios/index";
 
 const BASE_URL =
-  process.env.URL || "http://localhost:3000";
+  process.env.NEXT_PUBLIC_API_URL;
 
 type GetSnippetsParams = {
   search?: string;
@@ -49,7 +49,9 @@ export const getSnippetById = async (id: string): Promise<Snippet> => {
 };
 
 export const createSnippet = async (data: CreateSnippet): Promise<Snippet> => {
-  const res = await axios.post(`${BASE_URL}/snippet`, data);
+  console.log('createSnippet', BASE_URL);
+  const url =`${BASE_URL}/snippet`;
+  const res = await axios.post(url, data);
   if (!res.data) {
     const error = await res.data.catch(() => null);
     throw new Error(error?.message || "Не вдалося створити snippet");
