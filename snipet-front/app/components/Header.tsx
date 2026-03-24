@@ -13,6 +13,7 @@ export default function Header() {
             <Link href="/" className="text-sm transition hover:text-gray-300px">
               Головна
             </Link>
+            
           </nav>
           <Popup />
         </div>
