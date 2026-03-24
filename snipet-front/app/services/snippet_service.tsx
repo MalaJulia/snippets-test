@@ -29,7 +29,6 @@ const buildQuery = (params: GetSnippetsParams) => {
 export const getSnippets = async (params: GetSnippetsParams = {}) => {
   const query = buildQuery(params);
   const url =`${BASE_URL}/snippet${query ? `?${query}` : ""}`
-  console.log(url, 'url');
   const res = await axios
     .get(url)
       if (!res.data) {
@@ -49,7 +48,6 @@ export const getSnippetById = async (id: string): Promise<Snippet> => {
 };
 
 export const createSnippet = async (data: CreateSnippet): Promise<Snippet> => {
-  console.log('createSnippet', BASE_URL);
   const url =`${BASE_URL}/snippet`;
   const res = await axios.post(url, data);
   if (!res.data) {
