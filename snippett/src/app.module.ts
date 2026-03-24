@@ -1,4 +1,5 @@
-import { SnippetService } from './snippet/snippet.service';
+import { AuthModule } from './auth/auth.module';
+import { AuthController } from './auth/auth.controller';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -13,7 +14,9 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.DB!),
-    SnippetModule
+    SnippetModule,
+    AuthModule,
+
   ],
   controllers: [AppController, SnippetController],
   providers: [AppService],

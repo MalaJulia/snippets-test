@@ -3,7 +3,8 @@
 import { createSnippet, updateSnippet } from "../services/snippet_service";
 import { Snippet, SnippetType } from "../interfaces/snippetInterfaces";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 
 type SnippetFormProps = {
   mode: "create" | "edit";
@@ -27,6 +28,7 @@ export default function SnippetForm({
     form?: string;
   }>({});
 
+  const { auth } = useAuth()
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validate = (()=> {
@@ -64,7 +66,7 @@ const handleSubmit = (async (e: FormEvent)=> {
     };
 
     try {
-      if (mode === "create") {
+      if (mode === "create" ) {
         await createSnippet(payload);
         setTitle("");
         setContent("");
@@ -149,7 +151,7 @@ const handleSubmit = (async (e: FormEvent)=> {
 
 <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !auth}
         className="rounded-xl bg-black px-4 py-2 text-white disabled:opacity-50"
       >
         {isSubmitting
